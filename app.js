@@ -4,7 +4,7 @@ const router = require("./routes/api.js");
 const morgan = require('morgan');
 
 const app = express();
-const port = 3000;
+const PORT = process.env.PORT || 3000
 
 app.use(morgan('short'));
 app.use(bodyParser.json({type: 'application/json'}));
@@ -20,7 +20,7 @@ app.use((error, request, response, next) => {
     return response.status(500).send({message: error});
 });
 
-const server = app.listen(port, (error) => {
+const server = app.listen(PORT, (error) => {
     if (error) return console.log(`Error: ${error}`);
     console.log(`Server listening on port ${server.address().port}`);
 });

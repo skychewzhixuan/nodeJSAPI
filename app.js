@@ -28,3 +28,4 @@ const server = app.listen(PORT, (error) => {
 });
 
 
+module.exports = server

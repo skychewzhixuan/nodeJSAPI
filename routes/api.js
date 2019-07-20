@@ -1,6 +1,5 @@
-// Load the MySQL pool connection
 const express = require('express');
-const pool = require('../data/config');
+const pool = require('../database/config');
 
 const router = express.Router();
 router.post('/register', (request, response, next) => {
@@ -10,6 +9,7 @@ router.post('/register', (request, response, next) => {
     const queryString3 = 'INSERT INTO students (email, id_teacher) VALUES (? , ?)';
 
     pool.query(queryString1, request.body.teacher, (error, result) => {
+
         if (error) {
             console.log("Failed to query for teacher: " + error);
             response.sendStatus(500);
@@ -45,6 +45,7 @@ router.post('/register', (request, response, next) => {
         }
     });
 });
+
 
 router.get('/commonstudents', (request, response) => {
 
@@ -85,7 +86,7 @@ router.get('/commonstudents', (request, response) => {
 });
 
 router.post('/suspend', (request, response) => {
-    const queryString = 'UPDATE students SET is_suspend = 1 WHERE (email = ? AND is_suspend = 0)';
+    const queryString = 'UPDATE students SET is_suspend = 1 WHERE email = ?';
     pool.query(queryString, request.body.student, (error, result) => {
         if (error) {
             console.log("Failed to query for update student: " + error);
@@ -93,7 +94,7 @@ router.post('/suspend', (request, response) => {
             return;
         }
 
-        if (result.changedRows >= 1) {
+        if (result.affectedRows >= 1) {
             response.status(204).send();
         } else {
             response.status(400).send({

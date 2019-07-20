@@ -1,6 +1,6 @@
 # Guide to start 
 
-## Checkout from Git
+## 0. Checkout from Git
 Clone with HTTPS: https://github.com/skychewzx/nodeJSAPI.git
 Clone with SSH: git@github.com:skychewzx/nodeJSAPI.git
 
@@ -43,4 +43,6 @@ git push heroku master
      * Local: http://localhost:3000/api/retrievefornotifications
      * Heroku: https://sheltered-chamber-51899.herokuapp.com/api/retrievefornotifications
           
+## 7. Import Postman API
+https://www.getpostman.com/collections/3f4d768095d87d4d1027
 

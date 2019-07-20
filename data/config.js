@@ -1,10 +1,11 @@
 const mysql = require('mysql');
+require ('custom-env').env(true);
 
 const config = {
-    host: 'us-cdbr-iron-east-02.cleardb.net' || 'localhost',
-    user: 'be9e78d2c4d29a' || 'root',
-    password: 'a5143c78' || '12345',
-    database: 'heroku_7a8487ebde199ee' || 'db_assessment',
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_SCHEMA,
 };
 
 const pool = mysql.createPool(config);

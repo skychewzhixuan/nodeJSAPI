@@ -2,13 +2,15 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const router = require("./routes/api.js");
 const morgan = require('morgan');
+require ('custom-env').env(true);
 
 const app = express();
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT;
 
 app.use(morgan('short'));
 app.use(bodyParser.json({type: 'application/json'}));
 app.use(bodyParser.urlencoded({extended: true}));
+
 
 app.use('/api', router);
 
